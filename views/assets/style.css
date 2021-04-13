@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Product Sans';
+    src: url('../assets/product-sans/product-sans-regular.ttf') format('truetype');
+}
+
+* {
+    /*font-family: "Product Sans", serif;*/
+}
+
+.btn-block {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.sticky-top {
+    top: 10px;
+}
