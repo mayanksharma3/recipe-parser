@@ -1,8 +1,0 @@
-# sample dev block in the toml
-# note: each of these fields are OPTIONAL and should only be used if you need an override
-[dev]
-  framework = "#custom"
-  command = "npm start" # Command to start your dev server
-  port = 8888 # The port that the netlify dev will be accessible on
-  targetPort = 4000
-  publish = "dist" # If you use a _redirect file, provide the path to your static content folder
