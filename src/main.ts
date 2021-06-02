@@ -16,27 +16,33 @@ app.engine('handlebars', exphbs({
 
 app.set('view engine', 'handlebars');
 
-app.post('/recipe', async (req, res) => {
-    let recipeElement = await extractRecipe(req.body.q as string);
-    if (recipeElement) {
-        if (req.get('Content-Type') === "application/json") {
-            res.json(recipeElement)
-        } else {
-            res.render('recipe', {recipe: recipeElement});
-        }
-    } else {
-        if (req.get('Content-Type') === "application/json") {
-            res.status(404).send("Recipe not found")
-        } else {
-            res.render('error');
-        }
-    }
+app.post('/', async (req, res) => {
+
 });
 
 app.get('/', async (req, res) => {
-    res.render('home');
+    if(req.query.q) {
+        let recipeElement = await extractRecipe(req.query.q as string);
+        if (recipeElement) {
+            if (req.get('Content-Type') === "application/json") {
+                res.json(recipeElement)
+            } else {
+                res.render('recipe', {recipe: recipeElement});
+            }
+        } else {
+            if (req.get('Content-Type') === "application/json") {
+                res.status(404).send("Recipe not found")
+            } else {
+                res.render('error');
+            }
+        }
+    } else {
+        res.render('home');
+    }
 });
 
 app.listen(process.env.PORT || 4000, () => {
     console.log("Started Server")
 })
+
+module.exports = app;

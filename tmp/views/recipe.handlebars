@@ -1,0 +1,52 @@
+<div class="row" style="padding: 20px">
+    <div class="col-4">
+        <div class="sticky-top">
+            <img style="width: 100%; height: auto" src="{{recipe.image}}"/>
+            <h2>{{recipe.name}}</h2>
+            <h6>{{{recipe.description}}}</h6>
+            <p>Yield: {{{recipe.recipeYield}}}</p>
+            <div onclick="showIngredients()" class="btn btn-block btn-lg btn-primary">Ingredients</div>
+            <div onclick="showRecipe()" class="btn btn-lg btn-block btn-primary">Recipe</div>
+            <a class="btn btn-lg btn-block btn-primary" href="javascript:void(0)" onclick="window.location.href = '/'">Back to Home</a>
+        </div>
+    </div>
+    <div class="col-8">
+        <ul id="ingredients" class="list-group">
+            {{#each recipe.recipeIngredient}}
+                <li class="list-group-item">{{{this}}}</li>
+            {{/each}}
+        </ul>
+
+        <ul id="instructions" style="display: none" class="list-group">
+            {{#each recipe.recipeInstructions}}
+                <li class="recipe-item list-group-item">{{{this}}}</li>
+            {{/each}}
+        </ul>
+    </div>
+    <style>
+        .item-read {
+            background-color: #cfcccc;
+        }
+
+        .list-group-item {
+            font-size: 20px;
+        }
+    </style>
+    <script>
+
+        $('.list-group-item').on('click', function () {
+            $(this).toggleClass("item-read");
+        })
+
+        function showIngredients() {
+            $('#instructions').hide()
+            $('#ingredients').show()
+        }
+
+        function showRecipe() {
+            $('#ingredients').hide()
+            $('#instructions').show()
+        }
+    </script>
+</div>
+
